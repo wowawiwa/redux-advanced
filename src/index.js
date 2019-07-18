@@ -9,7 +9,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers'
 
-import { selectSubreddit, fetchPosts } from './actions'
+import { selectSubreddit, fetchPostsIfNeeded } from './actions'
 
 const loggerMiddleware = createLogger()
 const store = createStore(
@@ -20,8 +20,14 @@ const store = createStore(
   )
 )
 
-store.dispatch(selectSubreddit('reactjs'))
-store.dispatch(fetchPosts('reactjs')).then(() => console.log(store.getState()))
+// test fetchPosts
+// store.dispatch(selectSubreddit('reactjs'))
+// store.dispatch(fetchPosts('reactjs')).then(() => console.log(store.getState()))
+
+// test fetchPostsIfNeeded
+store
+  .dispatch(fetchPostsIfNeeded('reactjs'))
+  .then(() => console.log(store.getState()))
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
